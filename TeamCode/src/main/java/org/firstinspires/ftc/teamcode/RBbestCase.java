@@ -3,9 +3,11 @@ import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DistanceSensor;
 import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
+import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive;
 import org.firstinspires.ftc.teamcode.vision.RedDetectionPipeline;
 import org.openftc.easyopencv.OpenCvCamera;
@@ -28,6 +30,7 @@ public class RBbestCase extends LinearOpMode {
         DcMotor intakeMotor2 = hardwareMap.dcMotor.get("intakeMotor2");
         Servo airplaneServo = hardwareMap.servo.get("airplaneServo");
         Servo dropPixel = hardwareMap.servo.get("dropPixel");
+        DistanceSensor sensorDistance = hardwareMap.get(DistanceSensor.class, "sensor_distance");
         SampleMecanumDrive drive;
 
 
@@ -98,8 +101,12 @@ public class RBbestCase extends LinearOpMode {
                 sleep(500);
 
                 //forward to board and strafe left
-                  drive.setMotorPowers(.4, .4, .4, .4);
-                  sleep(1300);
+//                  drive.setMotorPowers(.4, .4, .4, .4);
+//                  sleep(1300);
+                while ((sensorDistance.getDistance(DistanceUnit.INCH)>2.9)){
+                    drive.setMotorPowers(.2,.2,.2,.2);
+                }
+                drive.setMotorPowers(0,0,0,0);
                   drive.setMotorPowers(-.4,.4,-.4,.4);
                   sleep(750);
                   drive.setMotorPowers(0,0,0,0);
@@ -144,7 +151,7 @@ public class RBbestCase extends LinearOpMode {
                 //make a trajectory that goes to the center spike mark
                 //move forward 10 inches
                 drive.setMotorPowers(0.4,0.4,0.4,0.4);
-                sleep(1135);
+                sleep(1185);
 
                 //strafe right to line up with spike mark
                 drive.setMotorPowers(.4,-.4,.4,-.4);
@@ -168,8 +175,14 @@ public class RBbestCase extends LinearOpMode {
                 drive.turn(Math.toRadians(-85));
 
                 //drive forward towards board
-                drive.setMotorPowers(.4,.4,.4,.4);
-                sleep(1600);
+
+                while ((sensorDistance.getDistance(DistanceUnit.INCH)>2.9)){
+                    drive.setMotorPowers(.2,.2,.2,.2);
+                }
+                drive.setMotorPowers(0,0,0,0);
+
+//                drive.setMotorPowers(.4,.4,.4,.4);
+//                sleep(1600);
 
                 //strafe left towards center
                 drive.setMotorPowers(-.4,.4,-.4,.4);
@@ -234,15 +247,21 @@ public class RBbestCase extends LinearOpMode {
 
                 //back up a little bit
                 drive.setMotorPowers(-.4,-.4,-.4,-.4);
-                sleep(250);
+                sleep(50);
 
                 //turn right towards board
                 drive.turn(Math.toRadians(-85));
 
-                //drive forward towards board
-                drive.setMotorPowers(.4,.4,.4,.4);
-                sleep(1450);
+//                //drive forward towards board
+
+                while ((sensorDistance.getDistance(DistanceUnit.INCH)>2.9)){
+                    drive.setMotorPowers(.2,.2,.2,.2);
+                }
                 drive.setMotorPowers(0,0,0,0);
+
+//                drive.setMotorPowers(.4,.4,.4,.4);
+//                sleep(1450);
+//                drive.setMotorPowers(0,0,0,0);
 
                 //strafe left towards center
                 drive.setMotorPowers(-.4,.4,-.4,.4);

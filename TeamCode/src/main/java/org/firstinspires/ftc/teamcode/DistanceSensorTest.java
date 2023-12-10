@@ -73,11 +73,6 @@ public class DistanceSensorTest extends LinearOpMode {
 //        telemetry.update();
         Pose2d startingPose = new Pose2d(12, 63.5, Math.toRadians(270));
         // generic DistanceSensor methods.
-        telemetry.addData("deviceName", sensorDistance.getDeviceName());
-        telemetry.addData("range", String.format("%.01f mm", sensorDistance.getDistance(DistanceUnit.MM)));
-        telemetry.addData("range", String.format("%.01f cm", sensorDistance.getDistance(DistanceUnit.CM)));
-        telemetry.addData("range", String.format("%.01f m", sensorDistance.getDistance(DistanceUnit.METER)));
-        telemetry.addData("range", String.format("%.01f in", sensorDistance.getDistance(DistanceUnit.INCH)));
         waitForStart();
 
 
@@ -89,7 +84,42 @@ public class DistanceSensorTest extends LinearOpMode {
             telemetry.addData("range", String.format("%.01f cm", sensorDistance.getDistance(DistanceUnit.CM)));
             telemetry.addData("range", String.format("%.01f m", sensorDistance.getDistance(DistanceUnit.METER)));
             telemetry.addData("range", String.format("%.01f in", sensorDistance.getDistance(DistanceUnit.INCH)));
+            telemetry.update();
             //prevents program from going into a trajectory while testing above
+int counter = 0;
+
+while ((sensorDistance.getDistance(DistanceUnit.INCH)>2.9)){
+    drive.setMotorPowers(.0,.0,.0,.0);
+    counter = counter+1;
+    telemetry.addData("range", String.format("%.01f in", sensorDistance.getDistance(DistanceUnit.INCH)));
+    telemetry.addData("counter", counter);
+    telemetry.update();
+}
+            telemetry.addData("done", String.format("%.01f in", sensorDistance.getDistance(DistanceUnit.INCH)));
+            telemetry.update();
+drive.setMotorPowers(0,0,0,0);
+//            pixelArm.setTargetPosition(900);
+//            pixelArm.setPower(-1);
+//            pixelArm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+//            sleep(1000);
+//            pixelArm.setPower(.1);
+//            extendingArm.setTargetPosition(2000);
+//            extendingArm.setPower(1);
+//            extendingArm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+//            sleep(1000);
+//            dropPixel.setPosition(.5);
+//            sleep(1000);
+//            dropPixel.setPosition(dropPixel.getPosition()+.5);
+//            extendingArm.setTargetPosition(0);
+//            extendingArm.setPower(-1);
+//            extendingArm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+//            sleep(1000);
+//            pixelArm.setTargetPosition(0);
+//            pixelArm.setPower(.4);
+//            pixelArm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+//            sleep(1000);
+
+
             sleep(30000);
 //            if (bluePipeline.getSelectedRectangle().equals("left")) {
 //                //make a trajectory that goes to the left spike mark
