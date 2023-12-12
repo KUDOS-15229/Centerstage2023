@@ -135,14 +135,14 @@ public class DriverControl extends LinearOpMode {
             }
 
             if (gamepad2.dpad_left && gamepad2.b) {
-                //airplane! :) (forwards)
-                airplaneServo.setDirection(Servo.Direction.FORWARD);
-                airplaneServo.setPosition(airplaneServo.getPosition() + 0.01);
+                //airplane! :) (shoot!)
+                airplaneServo.setDirection(Servo.Direction.REVERSE);
+                airplaneServo.setPosition(0.6);
             }
             if (gamepad2.dpad_right && gamepad2.b) {
-                //airplane! :) (backwards)
-                airplaneServo.setDirection(Servo.Direction.REVERSE);
-                airplaneServo.setPosition(airplaneServo.getPosition() + 0.01);
+                //airplane! :) (bring back to top)
+                airplaneServo.setDirection(Servo.Direction.FORWARD);
+                airplaneServo.setPosition(0.8);
             }
             if (gamepad2.left_bumper) {
                 //Extend Hanging Arm

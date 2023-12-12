@@ -172,11 +172,11 @@ public class RBbestCase extends LinearOpMode {
                 sleep(250);
 
                 //turn right towards board
-                drive.turn(Math.toRadians(-85));
+                drive.turn(Math.toRadians(-83));
 
                 //drive forward towards board
 
-                while ((sensorDistance.getDistance(DistanceUnit.INCH)>2.9)){
+                while ((sensorDistance.getDistance(DistanceUnit.INCH)>3.1)){
                     drive.setMotorPowers(.2,.2,.2,.2);
                 }
                 drive.setMotorPowers(0,0,0,0);
@@ -186,13 +186,13 @@ public class RBbestCase extends LinearOpMode {
 
                 //strafe left towards center
                 drive.setMotorPowers(-.4,.4,-.4,.4);
-                sleep(440);
+                sleep(530);
 
                 //stop
                 drive.setMotorPowers(0,0,0,0);
 
                 //drop pixel on board
-                pixelArm.setTargetPosition(900);
+                pixelArm.setTargetPosition(850);
                 pixelArm.setPower(-1);
                 pixelArm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                 sleep(1000);
@@ -247,7 +247,7 @@ public class RBbestCase extends LinearOpMode {
 
                 //back up a little bit
                 drive.setMotorPowers(-.4,-.4,-.4,-.4);
-                sleep(50);
+                sleep(75);
 
                 //turn right towards board
                 drive.turn(Math.toRadians(-85));
@@ -265,7 +265,7 @@ public class RBbestCase extends LinearOpMode {
 
                 //strafe left towards center
                 drive.setMotorPowers(-.4,.4,-.4,.4);
-                sleep(750);
+                sleep(650);
                 drive.setMotorPowers(0,0,0,0);
 
                 //drop pixel on board
