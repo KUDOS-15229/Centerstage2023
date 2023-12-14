@@ -3,9 +3,11 @@ import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DistanceSensor;
 import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
+import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive;
 import org.firstinspires.ftc.teamcode.vision.RedDetectionPipeline;
 import org.openftc.easyopencv.OpenCvCamera;
@@ -28,6 +30,7 @@ public class RAbestCase extends LinearOpMode {
         DcMotor intakeMotor2 = hardwareMap.dcMotor.get("intakeMotor2");
         Servo airplaneServo = hardwareMap.servo.get("airplaneServo");
         Servo dropPixel = hardwareMap.servo.get("dropPixel");
+        DistanceSensor sensorDistance = hardwareMap.get(DistanceSensor.class, "sensor_distance");
         SampleMecanumDrive drive;
 
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
@@ -152,7 +155,7 @@ drive.setMotorPowers(0,0,0,0);
 
                 //move forward 10 inches
                 drive.setMotorPowers(0.4,0.4,0.4,0.4);
-                sleep(1100);
+                sleep(1200);
 
                 //strafe left to line up with spike mark
                 drive.setMotorPowers(-.4,.4,-.4,.4);
@@ -181,16 +184,22 @@ drive.setMotorPowers(0,0,0,0);
 
                 //drive towards pixel board
                 drive.setMotorPowers(0.4,.4,.4,.4);
-                sleep(4240);
+                sleep(4013);
 
                 //strafe right towards pixel board
                 drive.setMotorPowers(.4,-.4,.4,-.4);
-                sleep(1700);
+                sleep(1513);
+                drive.setMotorPowers(0,0,0,0);
+
+                while ((sensorDistance.getDistance(DistanceUnit.INCH)>2.9)){
+                    drive.setMotorPowers(.2,.2,.2,.2);
+
+                }
                 drive.setMotorPowers(0,0,0,0);
 
                 //drop pixel on board
                 //dwayneHardware.placePixelForAuton();
-                pixelArm.setTargetPosition(900);
+                pixelArm.setTargetPosition(845);
                 pixelArm.setPower(-1);
                 pixelArm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                 sleep(1000);
@@ -211,14 +220,15 @@ drive.setMotorPowers(0,0,0,0);
                 pixelArm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                 sleep(1000);
 
-
+                drive.setMotorPowers(-.4,-.4,-.4,-.4);
+                sleep(130);
 
                 //strafe left and park
                 drive.setMotorPowers(-.4,.4,-.4,.4);
-                sleep(950);
+                sleep(1300);
 
                 drive.setMotorPowers(0,0,0,0);
-                sleep(30000);
+                sleep(130000);
 
             } else if (redPipeline.getSelectedRectangle().equals("right")) {
                 //make a trajectory that goes to the right spike mark
@@ -252,16 +262,21 @@ drive.setMotorPowers(0,0,0,0);
                 drive.setMotorPowers(.4,.4,.4,.4);
                 sleep(1250);
 
-                drive.turn(Math.toRadians(-78));
+                drive.turn(Math.toRadians(-79));
                 //drive towards pixel board
                 drive.setMotorPowers(0.4,.4,.4,.4);
-                sleep(3800);
+                sleep(3400);
 
-                //strafe right twords right
+                //strafe right towards right
                 drive.setMotorPowers(.4,-.4,.4,-.4);
-                sleep(2200);
+                sleep(1900);
 
                 drive.setMotorPowers(0, 0, 0, 0);
+                while ((sensorDistance.getDistance(DistanceUnit.INCH)>2.9)){
+                    drive.setMotorPowers(.2,.2,.2,.2);
+
+                }
+                drive.setMotorPowers(0,0,0,0);
 //drop pixel on board
                 //dwayneHardware.placePixelForAuton();
                 pixelArm.setTargetPosition(900);
@@ -269,7 +284,7 @@ drive.setMotorPowers(0,0,0,0);
                 pixelArm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                 sleep(1000);
                 pixelArm.setPower(.1);
-                extendingArm.setTargetPosition(2000);
+                extendingArm.setTargetPosition(2100);
                 extendingArm.setPower(1);
                 extendingArm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                 sleep(1000);
@@ -285,8 +300,8 @@ drive.setMotorPowers(0,0,0,0);
                 pixelArm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                 sleep(1000);
 
-
-
+drive.setMotorPowers(-.2,-.2,-.2,-.2);
+sleep(300);
                 //strafe left and park
                 drive.setMotorPowers(-.4,.4,-.4,.4);
                 sleep(1900);

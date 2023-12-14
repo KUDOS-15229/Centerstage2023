@@ -19,7 +19,7 @@ public void runOpMode() throws InterruptedException {
     // Initialize hardware, motors, servos etc
 
     SampleMecanumDrive drive;
-       DwayneHardware dwayneHardware = new DwayneHardware();
+       DwayneHardware dwayneHardware = new DwayneHardware(this);
 
        dwayneHardware.init();
 

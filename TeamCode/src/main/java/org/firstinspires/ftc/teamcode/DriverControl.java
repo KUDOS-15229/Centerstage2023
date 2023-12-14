@@ -5,8 +5,11 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.hardware.DistanceSensor;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
+
+import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 
 @TeleOp
 public class DriverControl extends LinearOpMode {
@@ -25,6 +28,7 @@ public class DriverControl extends LinearOpMode {
         DcMotor intakeMotor2 = hardwareMap.dcMotor.get("intakeMotor2");
         Servo dropPixel = hardwareMap.servo.get("dropPixel");
         Servo airplaneServo = hardwareMap.servo.get("airplaneServo");
+        DistanceSensor sensorDistance = hardwareMap.get(DistanceSensor.class, "sensor_distance");
 
         boolean capPower25 = false;
 
@@ -71,6 +75,7 @@ public class DriverControl extends LinearOpMode {
                 frontRightPower = Math.max(-maxPower, Math.min(maxPower, frontRightPower));
                 backRightPower = Math.max(-maxPower, Math.min(maxPower, backRightPower));
             }
+
 
             frontLeftMotor.setPower(frontLeftPower);
             backLeftMotor.setPower(backLeftPower);

@@ -8,33 +8,32 @@ import com.qualcomm.robotcore.hardware.Servo;
 
 public class DwayneHardware {
 
-    private LinearOpMode myOpMode = null;   // gain access to methods in the calling OpMode.
-    DcMotor frontLeftMotor  = null;
-    DcMotor backLeftMotor = null;
-    DcMotor frontRightMotor = null;
-    DcMotor backRightMotor = null;
-    DcMotor extendingArm = null;
-    DcMotor pixelArm = null;
-    DcMotor intakeMotor1 = null;
-    DcMotor intakeMotor2 = null;
-    Servo airplaneServo = null;
-    Servo dropPixel = null;
+    private LinearOpMode myOpMode;   // gain access to methods in the calling OpMode.
+    DcMotor frontLeftMotor;
+    DcMotor backLeftMotor;
+    DcMotor frontRightMotor;
+    DcMotor backRightMotor;
+    DcMotor extendingArm;
+    DcMotor pixelArm;
+    DcMotor intakeMotor1;
+    DcMotor intakeMotor2;
+    Servo airplaneServo;
+    Servo dropPixel;
 
-    public void RobotHardware (LinearOpMode opmode) {
+    public DwayneHardware (LinearOpMode opmode) {
         myOpMode = opmode;
     }
 public void init() {
-
-    DcMotor frontLeftMotor = hardwareMap.dcMotor.get("frontLeftMotor");
-    DcMotor backLeftMotor = hardwareMap.dcMotor.get("backLeftMotor");
-    DcMotor frontRightMotor = hardwareMap.dcMotor.get("frontRightMotor");
-    DcMotor backRightMotor = hardwareMap.dcMotor.get("backRightMotor");
-    DcMotor extendingArm = hardwareMap.dcMotor.get("extendingArm");
-    DcMotor pixelArm = hardwareMap.dcMotor.get(("pixelArm"));
-    DcMotor intakeMotor1 = hardwareMap.dcMotor.get("intakeMotor1");
-    DcMotor intakeMotor2 = hardwareMap.dcMotor.get("intakeMotor2");
-    Servo airplaneServo = hardwareMap.servo.get("airplaneServo");
-    Servo dropPixel = hardwareMap.servo.get("dropPixel");
+    frontLeftMotor = hardwareMap.dcMotor.get("frontLeftMotor");
+    backLeftMotor = hardwareMap.dcMotor.get("backLeftMotor");
+    frontRightMotor = hardwareMap.dcMotor.get("frontRightMotor");
+    backRightMotor = hardwareMap.dcMotor.get("backRightMotor");
+    extendingArm = hardwareMap.dcMotor.get("extendingArm");
+    pixelArm = hardwareMap.dcMotor.get(("pixelArm"));
+    intakeMotor1 = hardwareMap.dcMotor.get("intakeMotor1");
+    intakeMotor2 = hardwareMap.dcMotor.get("intakeMotor2");
+    airplaneServo = hardwareMap.servo.get("airplaneServo");
+    dropPixel = hardwareMap.servo.get("dropPixel");
 }
 
 public void placePixelForAuton()     {

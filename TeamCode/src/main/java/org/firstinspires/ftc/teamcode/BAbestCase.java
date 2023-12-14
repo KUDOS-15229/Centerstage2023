@@ -6,9 +6,11 @@ import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DistanceSensor;
 import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
+import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive;
 import org.firstinspires.ftc.teamcode.vision.BlueDetectionPipeline;
 import org.firstinspires.ftc.vision.VisionPortal;
@@ -33,6 +35,7 @@ public class BAbestCase extends LinearOpMode {
         DcMotor intakeMotor2 = hardwareMap.dcMotor.get("intakeMotor2");
         Servo airplaneServo = hardwareMap.servo.get("airplaneServo");
         Servo dropPixel = hardwareMap.servo.get("dropPixel");
+        DistanceSensor sensorDistance = hardwareMap.get(DistanceSensor.class, "sensor_distance");
 
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
         WebcamName webcamName = hardwareMap.get(WebcamName.class, "webcam");
@@ -115,18 +118,23 @@ public class BAbestCase extends LinearOpMode {
                 drive.setMotorPowers(.4,.4,.4,.4);
                 sleep(1350);
 
-                drive.turn(Math.toRadians(80));
+                drive.turn(Math.toRadians(85));
                 //drive towards pixel board
                 drive.setMotorPowers(0.4,.4,.4,.4);
-                sleep(3650);
+                sleep(3000);
                 //strafe left
                 drive.setMotorPowers(-.4,.4,-.4,.4);
-                sleep(2600);
+                sleep(2400);
+                drive.setMotorPowers(0,0,0,0);
+                while ((sensorDistance.getDistance(DistanceUnit.INCH)>2.9)){
+                    drive.setMotorPowers(.2,.2,.2,.2);
+
+                }
                 drive.setMotorPowers(0,0,0,0);
 
                 //drop pixel on board
                 //dwayneHardware.placePixelForAuton();
-                pixelArm.setTargetPosition(900);
+                pixelArm.setTargetPosition(845);
                 pixelArm.setPower(-1);
                 pixelArm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                 sleep(1000);
