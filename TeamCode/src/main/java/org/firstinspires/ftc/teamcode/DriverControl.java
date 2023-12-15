@@ -69,7 +69,7 @@ public class DriverControl extends LinearOpMode {
             // Check if power should be capped
             if (capPower25) {
                 // Cap the motor powers at 25%
-                double maxPower = 0.4;
+                double maxPower = 0.2;
                 frontLeftPower = Math.max(-maxPower, Math.min(maxPower, frontLeftPower));
                 backLeftPower = Math.max(-maxPower, Math.min(maxPower, backLeftPower));
                 frontRightPower = Math.max(-maxPower, Math.min(maxPower, frontRightPower));
@@ -82,7 +82,22 @@ public class DriverControl extends LinearOpMode {
             frontRightMotor.setPower(frontRightPower);
             backRightMotor.setPower(backRightPower);
 
-
+//            if (sensorDistance.getDistance(DistanceUnit.INCH) < 12) {
+//
+//                double maxPower2 = 0.2;
+//                frontLeftPower = Math.max(-maxPower2, Math.min(maxPower2, frontLeftPower));
+//                backLeftPower = Math.max(-maxPower2, Math.min(maxPower2, backLeftPower));
+//                frontRightPower = Math.max(-maxPower2, Math.min(maxPower2, frontRightPower));
+//                backRightPower = Math.max(-maxPower2, Math.min(maxPower2, backRightPower));
+//
+//                frontLeftMotor.setPower(frontLeftPower);
+//                backLeftMotor.setPower(backLeftPower);
+//                frontRightMotor.setPower(frontRightPower);
+//                backRightMotor.setPower(backRightPower);
+//
+//            } else {
+//                capPower25 = false;
+//            }
             // Check if dpad down button is pressed to cap power
             if (gamepad1.right_trigger>0) {
                 capPower25 = true;

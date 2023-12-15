@@ -118,7 +118,7 @@ public class BAbestCase extends LinearOpMode {
                 drive.setMotorPowers(.4,.4,.4,.4);
                 sleep(1350);
 
-                drive.turn(Math.toRadians(85));
+                drive.turn(Math.toRadians(88));
                 //drive towards pixel board
                 drive.setMotorPowers(0.4,.4,.4,.4);
                 sleep(3000);
@@ -139,7 +139,7 @@ public class BAbestCase extends LinearOpMode {
                 pixelArm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                 sleep(1000);
                 pixelArm.setPower(.1);
-                extendingArm.setTargetPosition(2000);
+                extendingArm.setTargetPosition(1950);
                 extendingArm.setPower(1);
                 extendingArm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                 sleep(1000);
@@ -154,6 +154,9 @@ public class BAbestCase extends LinearOpMode {
                 pixelArm.setPower(.4);
                 pixelArm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                 sleep(1000);
+
+                drive.setMotorPowers(-.4,-.4,-.4,-.4);
+                sleep(300);
 
                 //strafe right
                 drive.setMotorPowers(.4,-.4,.4,-.4);
@@ -196,15 +199,22 @@ public class BAbestCase extends LinearOpMode {
                 drive.setMotorPowers(0.4,0.4,0.4,0.4);
                 sleep(1213);
 
-                drive.turn(Math.toRadians(84));
+                drive.turn(Math.toRadians(88));
 
                 //drive towards pixel board
                 drive.setMotorPowers(0.4,.4,.4,.4);
-                sleep(4500);
+                sleep(4000);
                 //strafe left
                 drive.setMotorPowers(-.4,.4,-.4,.4);
                 sleep(1700);
                 drive.setMotorPowers(0,0,0,0);
+
+                while ((sensorDistance.getDistance(DistanceUnit.INCH)>2.9)){
+                    drive.setMotorPowers(.2,.2,.2,.2);
+
+                }
+                drive.setMotorPowers(0,0,0,0);
+
 
                 //drop pixel on board
                 //dwayneHardware.placePixelForAuton();
@@ -270,18 +280,25 @@ public class BAbestCase extends LinearOpMode {
 
 
                 //turn torwards pixel board
-                drive.turn(Math.toRadians(84));
+                drive.turn(Math.toRadians(88));
 
                 sleep(500);
 
                 //drive towards pixel board
                 drive.setMotorPowers(0.4,.4,.4,.4);
-                sleep(3700);
+                sleep(3000);
 
                 //strafe left
                 drive.setMotorPowers(-.4,.4,-.4,.4);
-                sleep(500);
+                sleep(800);
                 drive.setMotorPowers(0,0,0,0);
+
+                while ((sensorDistance.getDistance(DistanceUnit.INCH)>2.9)){
+                    drive.setMotorPowers(.2,.2,.2,.2);
+
+                }
+                drive.setMotorPowers(0,0,0,0);
+
 
                 //drop pixel on board
                 //dwayneHardware.placePixelForAuton();
